@@ -1,19 +1,17 @@
 var omlet = {
 	scramble : function(text,slct,min,max,cadence,characters){
-		//defaults
+		//set values/defaults
 		var string = text || "The world is everything that is the case",
 			rMax = min || 20,
 			rMin = max || 40,
 			selector = slct || 'body',
 			charCount = cadence || 100,
-			sneakyBR = 0,
 			sneakyChars = characters || "0123456789abcdefghijklmnopqurstuvwxyzABCDEFGHIJKLMNOPQURSTUVWXYZ!@#$%^&*(){}?:"
+			sneakyBR = 0,
 			html = "",
-			strArray = string.split(''); //toss the string into an array
+			strArray = string.split(''); //toss the message into an array
 
-			console.log(rMax)
-
-		//loop through array
+		//loop through message array
 		for (var i = 0; i < strArray.length; i++) {
 
 			//add secret letter to html
@@ -30,11 +28,42 @@ var omlet = {
 		//add html to selector
 		$(selector).html(html);					
 	},
-	unscramble : function(slct){
-		var a = "", selector = slct || 'body';
-		$(selector + ' span[hidden]').each(function(){ a += $(this).text(); });
-		$(selector).html(a);
-		//although the logistics behind actually unscrambling an omlet are quite a bit foggier
+	unscramble : { 
+		simple : function(slct){
+			var a = "", selector = slct || 'body';
+			$(selector + ' span[hidden]').each(function(){ a += $(this).text(); });
+			$(selector).html(a);
+			//although the logistics behind actually unscrambling an omlet are quite a bit foggier
+		},
+		superfluous : function(slct,spd,cadence){
+			var positionContainer = $(slct).position();
+			$('span:not([hidden])').css('opacity',0);
+			$('span[hidden]').removeAttr('hidden').css('color','red').addClass('show');
+			$('span.show').each(function(i){
+				var spanIndex = $(this).index(),
+					position = $(this).position(),
+					width = 8,
+					height = 15,
+					speed = spd || 1500,
+					charCount = cadence || 100,
+
+					//y position related math
+					rowOnCurrently = (Math.floor(spanIndex/charCount)+1)*height,
+					rowShouldBeOn = (Math.floor(i/charCount)+1)*height,
+					positionY = (position.top - rowShouldBeOn)*-1,
+
+					//x related stuff
+					whereinrow = (spanIndex * 8)/width,
+					whereitis = width * spanIndex,
+					whereitshouldbe = i*width,
+					positionX = whereitshouldbe - position.left + positionContainer.left - ( Math.floor(i/charCount) * charCount * width);
+
+				//crudely animate
+				$(this).animate({top:positionY }, speed, function(){
+					$(this).animate({left:positionX }, speed );
+				});
+			});
+		}
 	},
 	rchar : function(sneakyChars) {
 		sneakyChars = sneakyChars.replace(/ /g,'');

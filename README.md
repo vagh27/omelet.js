@@ -1,10 +1,11 @@
 #omlet.js
+##scrambles a message and then unscrambles it in a meaningful and satisfying manner
 
 ##demo
 http://omlet.johnvaghi.com
 
 ##basic implemenation
-Include omlet.js, then:
+###include omlet.js###
 
 ###to scramble, run:
 ```javascript
@@ -15,11 +16,16 @@ omlet.scramble('my string to scramble');
 ```javascript
 omlet.unscramble();
 ```
+###to unscramble superfluously, run:
+```javascript
+omlet.unscramble.superfluous(selector,$scope.set_speed,$scope.set_cadence);
+```
 
 ##function parameters
 ```javascript
 omlet.scramble(text_to_scramble,selector,min_span_range,max_span_range,character_cadence,character_set);
 omlet.unscramble(selector);
+omlet.unscramble.superfluous(selector,animate_speed,character_cadence); 
 ```
 ###text_to_scramble (string)
 ####default: 'The world is everything that is the case'
@@ -44,6 +50,10 @@ the number of letters per line
 ###character_set (string)
 ####default:  '0123456789abcdefghijklmnopqurstuvwxyzABCDEFGHIJKLMNOPQURSTUVWXYZ!@#$%^&*(){}?:'
 the character set used to randomly generate the scrambled text (spaces will be removed)
+
+###animate_speed (number)
+####default:  1500
+the speed at which the characters will rearrange around at
 
 ##dependencies
 ###function dependencies
