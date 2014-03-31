@@ -23,7 +23,7 @@ omlet.unscramble.superfluous();
 ```javascript
 omlet.scramble(text_to_scramble,selector,min_span_range,max_span_range,character_cadence,character_set);
 omlet.unscramble.simple(selector);
-omlet.unscramble.superfluous(selector,animate_speed,character_cadence); 
+omlet.unscramble.superfluous(selector,animate_speed,character_cadence,animate_order); 
 ```
 **text_to_scramble (string)**  
 the text that will be scrambled (i.e. wrapped in a span tag with a hidden attr)  
@@ -50,8 +50,13 @@ the character set used to randomly generate the scrambled text (spaces will be r
 *default:  '0123456789abcdefghijklmnopqurstuvwxyzABCDEFGHIJKLMNOPQURSTUVWXYZ!@#$%^&*(){}?:'*
 
 **animate_speed (number)**  
-the speed at which the characters will rearrange around at  
+the speed at which the characters will rearrange at  
 *default:  1500*
+
+**animate_order (bool)**  
+if false, the X animation will happen once the Y animation has completed  
+if true, the Y and X animation will happen at the same time (this works better with not too much text)  
+*default:  false*
 
 ##dependencies
 ####function dependencies
@@ -68,3 +73,4 @@ the speed at which the characters will rearrange around at
 - changing atrributes on message (i.e. actually having the message letters exist within the scrambled content (e.g. adding a class). this would require a conditional on where the breaks are added)
 - create something that might be decoded by someone without reading the source. for instance, if we now have the message letters in the scramble, have the distance between message letters follow some pattern (e.g. prime numbers, fibonacci sequence (max of like, 16 letters, though), etc)
 - wingding font option?
+- url params

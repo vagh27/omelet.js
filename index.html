@@ -12,19 +12,19 @@
 		<div class="omlet"></div>
 	
 		<div class="demo" ng-controller="LiveChange">
-			<div class="encode">
-				<textarea ng-change="updateScramble()" ng-model="scramble_text" placeholder="Update Text"></textarea>
-				<input type="number" ng-change="updateScramble()" ng-model="set_min" placeholder="Set Range Min">
-				<input type="number" ng-change="updateScramble()" ng-model="set_max" placeholder="Set Range Max">
-				<input type="number" ng-change="updateScramble()" ng-model="set_cadence" placeholder="Set Cadence">
-				<input type="text" ng-change="updateScramble()" ng-model="set_characters" placeholder="Set Characters">
-			</div>
-			<div class="decode">
-				<button ng-click="unscramble()">Decode Simply</button>
-				<br /><br />
-				<input type="number" ng-change="updateScramble()" ng-model="set_speed" placeholder="Set Superfluous Speed">
-				<button ng-click="unscrambleX()">Decode Superfluously</button>
-			</div>
+			<textarea ng-change="updateScramble()" ng-model="scramble_text" placeholder="Update Text"></textarea>
+			<input type="number" ng-change="updateScramble()" ng-model="set_min" placeholder="Set Range Min">
+			<input type="number" ng-change="updateScramble()" ng-model="set_max" placeholder="Set Range Max">
+			<input type="number" ng-change="updateScramble()" ng-model="set_cadence" placeholder="Set Cadence">
+			<input type="text" ng-change="updateScramble()" ng-model="set_characters" placeholder="Set Characters">
+			<button ng-click="unscramble()">Decode Simply</button>
+			<button ng-click="updateScramble()">Reset</button>
+			<br /><br />
+			
+			<input id="as" type="checkbox" ng-change="updateScramble()" ng-model="yx"><label for="as">Animate XY Simultaneously</label>
+			<input type="number" ng-change="updateScramble()" ng-model="set_speed" placeholder="Set Superfluous Speed">
+			<button ng-click="unscrambleX()">Decode Superfluously</button>
+			
 		</div><!-- end demo -->
 		
 		<script src="omlet.js"></script>
@@ -39,7 +39,7 @@
 		       		omlet.unscramble.simple(selector); 
 		       	}
 		       	$scope.unscrambleX = function(){ 
-		       		omlet.unscramble.superfluous(selector,$scope.set_speed,$scope.set_cadence); 
+		       		omlet.unscramble.superfluous(selector,$scope.set_speed,$scope.set_cadence,$scope.yx); 
 		       	}
 		    };
 		    

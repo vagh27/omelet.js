@@ -35,10 +35,10 @@ var omlet = {
 			$(selector).html(a);
 			//although the logistics behind actually unscrambling an omlet are quite a bit foggier
 		},
-		superfluous : function(slct,spd,cadence){
-			var positionContainer = $(slct).position();
-			$('span:not([hidden])').css('opacity',0);
-			$('span[hidden]').removeAttr('hidden').css('color','red').addClass('show');
+		superfluous : function(slct,spd,cadence,yx){
+			var positionContainer = $(slct).position(), animateOrder = yx || false;
+			$('span:not([hidden])').addClass('hide')
+			$('span[hidden]').removeAttr('hidden').addClass('show');
 			$('span.show').each(function(i){
 				var spanIndex = $(this).index(),
 					position = $(this).position(),
@@ -59,9 +59,12 @@ var omlet = {
 					positionX = whereitshouldbe - position.left + positionContainer.left - ( Math.floor(i/charCount) * charCount * width);
 
 				//crudely animate
-				$(this).animate({top:positionY }, speed, function(){
-					$(this).animate({left:positionX }, speed );
-				});
+				if(animateOrder) $(this).animate({top:positionY, left:positionX }, speed );	
+				else {
+					$(this).animate({top:positionY }, speed, function(){
+						$(this).animate({left:positionX }, speed );
+					});
+				}
 			});
 		}
 	},

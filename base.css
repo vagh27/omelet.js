@@ -2,11 +2,14 @@ body { font-family: monospace; padding-left:200px; margin-top:15px; }
 * { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box; }
 
 span { -webkit-transition: all 0.3s 0 linear; -moz-transition: all 0.3s 0 linear; -o-transition: all 0.3s 0 linear; -ms-transition: all 0.3s 0 linear; transition: all 0.3s 0 linear; position: relative; top:0; }
+	.hide { opacity: 0; }
+	.show { color:red; }
 
 .demo { height: 100%; position: fixed; top: 0; left: 0; width:195px; padding:10px; background-color: #ccc; border-right: 2px solid #efefef; }
 
-.encode,.decode { }
 textarea,input,button { width: 175px; padding: 3px; border:0px; }
 textarea { height:100px; }
+label { margin-right: 10px; color:#666; font-size:11px; font-family:Arial,Helvetica; cursor:pointer; }
+input[type=checkbox] { width: auto; }
 button { background-color: #ff9900; color:#fff; cursor:pointer; }
 	button:hover { background-color:#ff6600;}
