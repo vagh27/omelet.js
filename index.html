@@ -1,0 +1,39 @@
+<!doctype html>
+<html ng-app>
+	<head>
+		<link rel="stylesheet" href="base.css">
+		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.3/angular.min.js"></script>
+	</head>
+	<body>
+		
+		<div class="omlet"></div>
+	
+		<div class="demo" ng-controller="LiveChange">
+			<div class="encode">
+				<textarea ng-change="updateScramble()" ng-model="scramble_text" placeholder="Update Text"></textarea>
+				<input type="number" ng-change="updateScramble()" ng-model="set_min" placeholder="Set Min">
+				<input type="number" ng-change="updateScramble()" ng-model="set_max" placeholder="Set Max">
+				<input type="number" ng-change="updateScramble()" ng-model="set_cadence" placeholder="Set Cadence">
+				<input type="text" ng-change="updateScramble()" ng-model="set_characters" placeholder="Set Characters">
+			</div>
+			<div class="decode">
+				<button ng-click="unscramble()">Decode Simply</button>
+			</div>
+		</div><!-- end demo -->
+		
+		<script src="omlet.js"></script>
+		<script>
+			//NON-SCRAMBLE RELATED STUFF
+			var selector = '.omlet';
+			var LiveChange = function($scope){
+		        $scope.updateScramble = function(){ omlet.scramble($scope.scramble_text,selector,$scope.set_min,$scope.set_max,$scope.set_cadence,$scope.set_characters); }
+		       	$scope.unscramble = function(){ omlet.unscramble(selector); }
+		    };
+		    
+		    $(function() { 
+				omlet.scramble("Elegantly unscramble this message with jQuery using the space provided. Then write the scrambler that made it. The answer is an object with global scope that can scramble and unscramble any text any number of times.",selector); 
+			});
+		</script>
+	</body>
+</html>
