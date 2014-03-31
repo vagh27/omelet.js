@@ -48,15 +48,12 @@ var omlet = {
 					charCount = cadence || 100,
 
 					//y position related math
-					rowOnCurrently = (Math.floor(spanIndex/charCount)+1)*height,
-					rowShouldBeOn = (Math.floor(i/charCount)+1)*height,
-					positionY = (position.top - rowShouldBeOn)*-1,
+					whereitshouldbeY = (Math.floor(i/charCount)+1)*height,
+					positionY = (position.top - whereitshouldbeY)*-1,
 
-					//x related stuff
-					whereinrow = (spanIndex * 8)/width,
-					whereitis = width * spanIndex,
-					whereitshouldbe = i*width,
-					positionX = whereitshouldbe - position.left + positionContainer.left - ( Math.floor(i/charCount) * charCount * width);
+					//x position related stuff
+					whereitshouldbeX = i*width,
+					positionX = whereitshouldbeX - position.left + positionContainer.left - ( Math.floor(i/charCount) * charCount * width);
 
 				//crudely animate
 				if(animateOrder) $(this).animate({top:positionY, left:positionX }, speed );	
