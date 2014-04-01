@@ -1,29 +1,29 @@
-#omlet.js
+#omelet.js
 ####scrambles a message and then unscrambles it in a meaningful and satisfying manner
 
 ##demo
-http://omlet.johnvaghi.com
+http://omelet.johnvaghi.com
 
 ##basic implemenation
-- include **omlet.js**
+- include **omelet.js**
 - to scramble, run:
 ```javascript
-omlet.scramble('my string to scramble');
+omelet.scramble('my string to scramble');
 ```
 - to unscramble, run:
 ```javascript
-omlet.unscramble.simple();
+omelet.unscramble.simple();
 ```
 - to unscramble superfluously, run:
 ```javascript
-omlet.unscramble.superfluous();
+omelet.unscramble.superfluous();
 ```
 
 ##function parameters
 ```javascript
-omlet.scramble(text_to_scramble,selector,min_span_range,max_span_range,character_cadence,character_set);
-omlet.unscramble.simple(selector);
-omlet.unscramble.superfluous(selector,animate_speed,character_cadence,animate_order); 
+omelet.scramble(text_to_scramble,selector,min_span_range,max_span_range,character_cadence,character_set);
+omelet.unscramble.simple(selector);
+omelet.unscramble.superfluous(selector,animate_speed,character_cadence,animate_order); 
 ```
 **text_to_scramble (string)**  
 the text that will be scrambled (i.e. wrapped in a span tag with a hidden attr)  

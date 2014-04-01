@@ -1,4 +1,4 @@
-var omlet = {
+var omelet = {
 	scramble : function(text,slct,min,max,cadence,characters){
 		//set values/defaults
 		var string = text || "The world is everything that is the case",
@@ -18,8 +18,8 @@ var omlet = {
 		    html += '<span hidden>'+strArray[i]+'</span>';
 
 		    //create trickster spans and add to html
-		    for (var a = 0; a < omlet.rnum(rMin,rMax); a++) {
-		    	html += '<span>'+omlet.rchar(sneakyChars)+'</span>';
+		    for (var a = 0; a < omelet.rnum(rMin,rMax); a++) {
+		    	html += '<span>'+omelet.rchar(sneakyChars)+'</span>';
 		    	sneakyBR++;
 		    	if (sneakyBR % charCount === 0) html+="<br />";
 		    }
@@ -33,7 +33,7 @@ var omlet = {
 			var a = "", selector = slct || 'body';
 			$(selector + ' span[hidden]').each(function(){ a += $(this).text(); });
 			$(selector).html(a);
-			//although the logistics behind actually unscrambling an omlet are quite a bit foggier
+			//although the logistics behind actually unscrambling an omelet are quite a bit foggier
 		},
 		superfluous : function(slct,spd,cadence,yx){
 			var positionContainer = $(slct).position(), animateOrder = yx || false;
