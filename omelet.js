@@ -11,14 +11,14 @@ var omelet = {
 			sneakyBR = 0,
 			html = "",
 			strArray = string.split(''), //toss the message into an array
-			embedAttr = embed ? 'class=embed' : 'hidden';
+			embedAttr = omelet.embeded(embed);
 
 		//loop through message array
 		for (var i = 0; i < strArray.length; i++) {
 
 			//add secret letter to html
-
 		    html += '<span '+embedAttr+'>'+strArray[i]+'</span>';
+		    
 			if(embedChars) { 
 				sneakyBR++;
 		    	if (sneakyBR % charCount === 0) html+="<br />";
@@ -41,7 +41,7 @@ var omelet = {
 		simple : function(slct,embed){
 			var a = "", 
 				selector = slct || 'body',
-				embedAttr = embed ? 'class=embed' : 'hidden';
+				embedAttr = omelet.embeded(embed);
 			$(selector + ' span['+embedAttr+']').each(function(){ a += $(this).text(); });
 			$(selector).html(a);
 			//although the logistics behind actually unscrambling an omelet are quite a bit foggier
@@ -49,7 +49,7 @@ var omelet = {
 		superfluous : function(slct,spd,cadence,yx,embed){
 			var positionContainer = $(slct).position(), 
 				animateOrder = yx || false,
-				embedAttr = embed ? 'class=embed' : 'hidden';
+				embedAttr = omelet.embeded(embed);
 			$('span:not(['+embedAttr+'])').addClass('hide')
 			$('span['+embedAttr+']').removeAttr('hidden').addClass('show');
 			$('span.show').each(function(i){
@@ -78,6 +78,7 @@ var omelet = {
 			});
 		}
 	},
+	embeded : function(embed){ return embed ? 'class=embed' : 'hidden' },
 	rchar : function(sneakyChars) {
 		sneakyChars = sneakyChars.replace(/ /g,'');
 	    return sneakyChars.substr( Math.floor(Math.random() * sneakyChars.length), 1);
