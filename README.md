@@ -21,9 +21,9 @@ omelet.unscramble.superfluous();
 
 ##function parameters
 ```javascript
-omelet.scramble(text_to_scramble,selector,min_span_range,max_span_range,character_cadence,character_set);
-omelet.unscramble.simple(selector);
-omelet.unscramble.superfluous(selector,animate_speed,character_cadence,animate_order); 
+omelet.scramble(text_to_scramble,selector,min_span_range,max_span_range,character_cadence,character_set,embed_characters);
+omelet.unscramble.simple(selector,embed_characters);
+omelet.unscramble.superfluous(selector,animate_speed,character_cadence,animate_order,embed_characters); 
 ```
 **text_to_scramble (string)**  
 the text that will be scrambled (i.e. wrapped in a span tag with a hidden attr)  
@@ -58,6 +58,11 @@ if false, the X animation will happen once the Y animation has completed
 if true, the Y and X animation will happen at the same time (this works better with not too much text)  
 *default:  false*
 
+**embed_characters (bool)**  
+if false, the message's characters will not appear in the scrambed output
+if true, the message's characters will appear in the scrambed output wrapped in a span tag with a class of *embed*
+*default:  false*
+
 ##dependencies
 ####function dependencies
 - jQuery
@@ -70,7 +75,7 @@ if true, the Y and X animation will happen at the same time (this works better w
 - option to change letter tags (don't see much value)
 - option to append scrambled content (don't see much value)
 - ~~cooler way to decode text (channel inner PDK)~~ (must optimize)
-- changing atrributes on message (i.e. actually having the message letters exist within the scrambled content (e.g. adding a class). this would require a conditional on where the breaks are added)
+- ~~changing atrributes on message (i.e. actually having the message letters exist within the scrambled content (e.g. adding a class). this would require a conditional on where the breaks are added)~~
 - create something that might be decoded by someone without reading the source. for instance, if we now have the message letters in the scramble, have the distance between message letters follow some pattern (e.g. prime numbers, fibonacci sequence (max of like, 16 letters, though), etc)
 - wingding font option?
 - url params

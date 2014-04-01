@@ -17,6 +17,7 @@
 			<input type="number" ng-change="updateScramble()" ng-model="set_max" placeholder="Set Range Max">
 			<input type="number" ng-change="updateScramble()" ng-model="set_cadence" placeholder="Set Cadence">
 			<input type="text" ng-change="updateScramble()" ng-model="set_characters" placeholder="Set Characters">
+			<input id="embed" type="checkbox" ng-change="updateScramble()" ng-model="embed"><label for="embed">Embed Characters</label>
 			<button ng-click="unscramble()">Decode Simply</button>
 			<button ng-click="updateScramble()">Rescramble</button>
 			<br /><br />
@@ -33,13 +34,13 @@
 			var selector = '.omelet';
 			var LiveChange = function($scope){
 		        $scope.updateScramble = function(){ 
-		        	omelet.scramble($scope.scramble_text,selector,$scope.set_min,$scope.set_max,$scope.set_cadence,$scope.set_characters); 
+		        	omelet.scramble($scope.scramble_text,selector,$scope.set_min,$scope.set_max,$scope.set_cadence,$scope.set_characters,$scope.embed); 
 		        }
 		       	$scope.unscramble = function(){ 
-		       		omelet.unscramble.simple(selector); 
+		       		omelet.unscramble.simple(selector,$scope.embed); 
 		       	}
 		       	$scope.unscrambleX = function(){ 
-		       		omelet.unscramble.superfluous(selector,$scope.set_speed,$scope.set_cadence,$scope.yx); 
+		       		omelet.unscramble.superfluous(selector,$scope.set_speed,$scope.set_cadence,$scope.yx,$scope.embed); 
 		       	}
 		    };
 		    

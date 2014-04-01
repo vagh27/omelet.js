@@ -1,21 +1,28 @@
 var omelet = {
-	scramble : function(text,slct,min,max,cadence,characters){
+	scramble : function(text,slct,min,max,cadence,characters,embed){
 		//set values/defaults
 		var string = text || "The world is everything that is the case",
 			rMax = min || 20,
 			rMin = max || 40,
 			selector = slct || 'body',
 			charCount = cadence || 100,
-			sneakyChars = characters || "0123456789abcdefghijklmnopqurstuvwxyzABCDEFGHIJKLMNOPQURSTUVWXYZ!@#$%^&*(){}?:"
+			sneakyChars = characters || "0123456789abcdefghijklmnopqurstuvwxyzABCDEFGHIJKLMNOPQURSTUVWXYZ!@#$%^&*(){}?:",
+			embedChars = embed || false,
 			sneakyBR = 0,
 			html = "",
-			strArray = string.split(''); //toss the message into an array
+			strArray = string.split(''), //toss the message into an array
+			embedAttr = embed ? 'class=embed' : 'hidden';
 
 		//loop through message array
 		for (var i = 0; i < strArray.length; i++) {
 
 			//add secret letter to html
-		    html += '<span hidden>'+strArray[i]+'</span>';
+
+		    html += '<span '+embedAttr+'>'+strArray[i]+'</span>';
+			if(embedChars) { 
+				sneakyBR++;
+		    	if (sneakyBR % charCount === 0) html+="<br />";
+		    }
 
 		    //create trickster spans and add to html
 		    for (var a = 0; a < omelet.rnum(rMin,rMax); a++) {
@@ -23,22 +30,28 @@ var omelet = {
 		    	sneakyBR++;
 		    	if (sneakyBR % charCount === 0) html+="<br />";
 		    }
+
+		    
 		}
 
 		//add html to selector
 		$(selector).html(html);					
 	},
 	unscramble : { 
-		simple : function(slct){
-			var a = "", selector = slct || 'body';
-			$(selector + ' span[hidden]').each(function(){ a += $(this).text(); });
+		simple : function(slct,embed){
+			var a = "", 
+				selector = slct || 'body',
+				embedAttr = embed ? 'class=embed' : 'hidden';
+			$(selector + ' span['+embedAttr+']').each(function(){ a += $(this).text(); });
 			$(selector).html(a);
 			//although the logistics behind actually unscrambling an omelet are quite a bit foggier
 		},
-		superfluous : function(slct,spd,cadence,yx){
-			var positionContainer = $(slct).position(), animateOrder = yx || false;
-			$('span:not([hidden])').addClass('hide')
-			$('span[hidden]').removeAttr('hidden').addClass('show');
+		superfluous : function(slct,spd,cadence,yx,embed){
+			var positionContainer = $(slct).position(), 
+				animateOrder = yx || false,
+				embedAttr = embed ? 'class=embed' : 'hidden';
+			$('span:not(['+embedAttr+'])').addClass('hide')
+			$('span['+embedAttr+']').removeAttr('hidden').addClass('show');
 			$('span.show').each(function(i){
 				var spanIndex = $(this).index(),
 					position = $(this).position(),
